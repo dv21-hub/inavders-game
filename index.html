@@ -5,7 +5,6 @@
   <title>Space Invaders</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       background: #000;
       display: flex;
@@ -17,43 +16,19 @@
       color: #0f0;
       overflow: hidden;
     }
-
-    #ui {
-      width: 600px;
-      padding: 6px 4px;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
-
-    #ui-row1, #ui-row2 {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
+    #ui { width: 600px; padding: 6px 4px; font-size: 14px; letter-spacing: 2px; }
+    #ui-row1, #ui-row2 { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     #ui-row2 { margin-top: 4px; }
-
     .ui-cell { flex: 1; text-align: center; }
     .ui-cell:first-child { text-align: left; }
     .ui-cell:last-child  { text-align: right; }
-
     canvas {
       border: 2px solid #0f0;
       box-shadow: 0 0 20px #0f0, 0 0 40px #0a0;
       background: #000;
       display: block;
     }
-
-    #message {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #0a0;
-      letter-spacing: 1px;
-      text-align: center;
-    }
-
-    /* ── Start Screen ── */
+    #message { margin-top: 12px; font-size: 13px; color: #0a0; letter-spacing: 1px; text-align: center; }
     #startScreen {
       position: absolute;
       display: flex;
@@ -63,189 +38,82 @@
       gap: 20px;
       text-align: center;
     }
-
-    #startScreen h1 {
-      font-size: 40px;
-      color: #0f0;
-      text-shadow: 0 0 20px #0f0;
-      letter-spacing: 6px;
-    }
-
-    .high-scores-display {
-      display: flex;
-      gap: 40px;
-      color: #0a0;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-
-    .hs-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .hs-label { color: #060; font-size: 11px; letter-spacing: 2px; }
+    #startScreen h1 { font-size: 40px; color: #0f0; text-shadow: 0 0 20px #0f0; letter-spacing: 6px; }
+    .high-scores-display { display: flex; gap: 40px; color: #0f0; font-size: 14px; letter-spacing: 1px; }
+    .hs-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .hs-label { color: #0f0; font-size: 11px; letter-spacing: 2px; }
     .hs-value { color: #0f0; font-size: 18px; }
-
-    .mode-buttons {
-      display: flex;
-      gap: 24px;
-      margin-top: 8px;
-    }
-
+    .mode-buttons { display: flex; gap: 24px; margin-top: 8px; }
     .modeBtn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      padding: 20px 32px;
-      background: transparent;
-      border: 2px solid #0f0;
-      color: #0f0;
-      font-family: 'Courier New', monospace;
-      font-size: 18px;
-      letter-spacing: 3px;
-      cursor: pointer;
-      transition: all 0.2s;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      padding: 20px 32px; background: transparent; border: 2px solid #0f0;
+      color: #0f0; font-family: 'Courier New', monospace; font-size: 18px;
+      letter-spacing: 3px; cursor: pointer; transition: all 0.2s;
     }
-
-    .modeBtn:hover {
-      background: #0f0;
-      color: #000;
-      box-shadow: 0 0 20px #0f0;
-    }
-
-    .modeBtn .btn-sub {
-      font-size: 11px;
-      letter-spacing: 1px;
-      opacity: 0.7;
-    }
-
-    #startScreen p { color: #0a0; font-size: 14px; line-height: 1.8; }
-
-    /* ── Game Over Screen ── */
+    .modeBtn:hover { background: #0f0; color: #000; box-shadow: 0 0 20px #0f0; }
+    .modeBtn .btn-sub { font-size: 11px; letter-spacing: 1px; opacity: 0.7; color: #0f0; }
+    #startScreen p { color: #0f0; font-size: 14px; line-height: 1.8; }
     #gameOverScreen {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      text-align: center;
-      background: rgba(0,0,0,0.85);
-      z-index: 10;
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px; text-align: center; background: rgba(0,0,0,0.85); z-index: 10;
     }
-
-    #gameOverScreen h1 {
-      font-size: 40px;
-      color: #0f0;
-      text-shadow: 0 0 20px #0f0;
-      letter-spacing: 6px;
-    }
-
-    #gameOverScreen p {
-      color: #0a0;
-      font-size: 15px;
-      line-height: 1.8;
-      max-width: 420px;
-    }
-
-    .go-scores {
-      display: flex;
-      gap: 40px;
-      margin: 8px 0;
-    }
-
-    .go-score-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-
+    #gameOverScreen h1 { font-size: 40px; color: #0f0; text-shadow: 0 0 20px #0f0; letter-spacing: 6px; }
+    #gameOverScreen p { color: #0a0; font-size: 15px; line-height: 1.8; max-width: 420px; }
+    .go-scores { display: flex; gap: 40px; margin: 8px 0; }
+    .go-score-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
     .go-score-label { color: #060; font-size: 11px; letter-spacing: 2px; }
     .go-score-val   { color: #0f0; font-size: 20px; }
-
     .go-btn-row { display: flex; gap: 16px; margin-top: 8px; }
-
     .goBtn {
-      padding: 12px 28px;
-      background: transparent;
-      border: 2px solid #0f0;
-      color: #0f0;
-      font-family: 'Courier New', monospace;
-      font-size: 16px;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 12px 28px; background: transparent; border: 2px solid #0f0;
+      color: #0f0; font-family: 'Courier New', monospace; font-size: 16px;
+      letter-spacing: 2px; cursor: pointer; transition: all 0.2s;
     }
-
-    .goBtn:hover {
-      background: #0f0;
-      color: #000;
-      box-shadow: 0 0 20px #0f0;
-    }
-
-    /* ── Player 2 label ── */
+    .goBtn:hover { background: #0f0; color: #000; box-shadow: 0 0 20px #0f0; }
     .p2-label { color: #0ff; }
     .p1-label { color: #0f0; }
   </style>
 </head>
 <body>
 
-<!-- ── Start Screen ── -->
 <div id="startScreen">
   <h1>SPACE INVADERS</h1>
-
   <div class="high-scores-display">
     <div class="hs-block">
       <div class="hs-label">1 PLAYER HIGH SCORE</div>
       <div class="hs-value" id="hs1p">0</div>
     </div>
+    <div class="hs-block">
+      <div class="hs-label">2 PLAYER HIGH SCORE</div>
+      <div class="hs-value" id="hs2p">0</div>
+    </div>
   </div>
-
   <div class="mode-buttons">
-    <button class="modeBtn" onclick="startGame(1)">
-      1 PLAYER
-      <span class="btn-sub">← → SPACE</span>
-    </button>
-    <button class="modeBtn" onclick="startGame(2)">
-      2 PLAYERS
-      <span class="btn-sub p2-label">AD W  |  ← → SPACE</span>
-    </button>
+    <button class="modeBtn" onclick="startGame(1)">1 PLAYER<span class="btn-sub">← → SPACE</span></button>
+    <button class="modeBtn" onclick="startGame(2)">2 PLAYERS<span class="btn-sub p2-label">AD W  |  ← → SPACE</span></button>
   </div>
-
   <p>Defeat all aliens before they reach you!</p>
 </div>
 
-<!-- ── Game Over Screen ── -->
 <div id="gameOverScreen">
   <h1 id="gameOverTitle">GAME OVER</h1>
   <p id="gameOverText"></p>
-
   <div class="go-scores" id="goScores"></div>
-
   <div class="go-btn-row">
     <button class="goBtn" id="playAgainBtn">PLAY AGAIN</button>
     <button class="goBtn" id="homeBtn">HOME</button>
   </div>
 </div>
 
-<!-- ── Game Container ── -->
 <div id="gameContainer" style="display:none; flex-direction:column; align-items:center;">
   <div id="ui">
-    <!-- Row 1: always visible -->
     <div id="ui-row1">
       <span class="ui-cell" id="p1ScoreUI">SCORE: <span id="score1">0</span></span>
-      <span class="ui-cell" id="highScoreUI" style="visibility:hidden">HIGH SCORE: <span id="highScoreDisplay">0</span></span>
+      <span class="ui-cell" id="highScoreUI">HIGH SCORE: <span id="highScoreDisplay">0</span></span>
       <span class="ui-cell">LEVEL: <span id="level">1</span></span>
       <span class="ui-cell" id="p1LivesUI">LIVES: <span id="lives1">3</span></span>
     </div>
-    <!-- Row 2: 2P only -->
     <div id="ui-row2" style="display:none">
       <span class="ui-cell p2-label">P2 SCORE: <span id="score2">0</span></span>
       <span class="ui-cell"></span>
@@ -258,7 +126,6 @@
 </div>
 
 <script>
-// ── High Scores (separate per mode) ──────────────────────────
 let hs1p = Number(localStorage.getItem('si_hs_1p')) || 0;
 let hs2p = Number(localStorage.getItem('si_hs_2p')) || 0;
 
@@ -266,24 +133,18 @@ function saveHS(mode, val) {
   if (mode === 1) { hs1p = val; localStorage.setItem('si_hs_1p', val); }
   else            { hs2p = val; localStorage.setItem('si_hs_2p', val); }
 }
-
 function refreshStartHScores() {
   document.getElementById('hs1p').textContent = hs1p;
+  document.getElementById('hs2p').textContent = hs2p;
 }
 
-// ── Canvas / Context ──────────────────────────────────────────
 const canvas = document.getElementById('gameCanvas');
 const ctx    = canvas.getContext('2d');
 
-// ── Game State ────────────────────────────────────────────────
-let gameMode = 1;
-let level = 1;
-let gameRunning = false;
-let animId;
+let gameMode = 1, level = 1, gameRunning = false, animId;
 let alienDir = 1, alienSpeed = 0.5, alienDropY = 12, alienShootTimer = 0;
 let aliens = [], barriers = [], bullets = [], enemyBullets = [], explosions = [];
 
-// ── Players ───────────────────────────────────────────────────
 const players = [
   { x: 200, y: 460, w: 50, h: 30, speed: 5, color: '#0f0', score: 0, lives: 3, alive: true, lastShot: 0 },
   { x: 350, y: 460, w: 50, h: 30, speed: 5, color: '#0ff', score: 0, lives: 3, alive: true, lastShot: 0 }
@@ -294,24 +155,17 @@ function resetPlayers() {
   players[1] = { x: 350, y: 460, w: 50, h: 30, speed: 5, color: '#0ff', score: 0, lives: 3, alive: true, lastShot: 0 };
 }
 
-// ── Input ─────────────────────────────────────────────────────
 const keys = {};
-document.addEventListener('keydown', e => {
-  keys[e.code] = true;
-  if (e.code === 'Space') e.preventDefault();
-});
-document.addEventListener('keyup', e => { keys[e.code] = false; });
+document.addEventListener('keydown', e => { keys[e.code] = true; if (e.code === 'Space') e.preventDefault(); });
+document.addEventListener('keyup',   e => { keys[e.code] = false; });
 
-// ── Shoot ─────────────────────────────────────────────────────
 function tryShoot(p, playerBullets) {
   const now = Date.now();
-  if (!p.alive) return;
-  if (now - (p.lastShot || 0) < 400) return;
+  if (!p.alive || now - (p.lastShot || 0) < 400) return;
   p.lastShot = now;
   playerBullets.push({ x: p.x + 23, y: p.y + 2, w: 4, h: 12, speed: 8, color: p.color });
 }
 
-// ── Aliens ────────────────────────────────────────────────────
 function createAliens() {
   aliens = [];
   for (let r = 0; r < 4; r++)
@@ -319,7 +173,6 @@ function createAliens() {
       aliens.push({ x: 40 + c * 48, y: 50 + r * 44, w: 36, h: 28, row: r, alive: true });
 }
 
-// ── Barriers ─────────────────────────────────────────────────
 function createBarriers() {
   barriers = [];
   for (let b = 0; b < 4; b++) {
@@ -330,14 +183,13 @@ function createBarriers() {
   }
 }
 
-// ── Draw Helpers ──────────────────────────────────────────────
 function drawPlayer(p) {
   if (!p.alive) return;
   ctx.fillStyle = p.color;
-  ctx.fillRect(p.x + 10, p.y + 10, 30, 20);
-  ctx.fillRect(p.x + 22, p.y,      6,  14);
-  ctx.fillRect(p.x,      p.y + 18, 14, 12);
-  ctx.fillRect(p.x + 36, p.y + 18, 14, 12);
+  ctx.fillRect(p.x+10, p.y+10, 30, 20);
+  ctx.fillRect(p.x+22, p.y,     6, 14);
+  ctx.fillRect(p.x,    p.y+18, 14, 12);
+  ctx.fillRect(p.x+36, p.y+18, 14, 12);
 }
 
 function drawAlien(a) {
@@ -382,12 +234,10 @@ function drawStars() {
     ctx.fillRect((i*97+13)%600, (i*173+29)%500, 1, 1);
 }
 
-// ── Collision ──────────────────────────────────────────────────
 function overlaps(a, b) {
   return a.x < b.x+b.w && a.x+a.w > b.x && a.y < b.y+b.h && a.y+a.h > b.y;
 }
 
-// ── Explosions ────────────────────────────────────────────────
 function spawnExplosion(x, y) { explosions.push({ x, y, r: 4, max: 22 }); }
 
 function updateExplosions() {
@@ -401,7 +251,6 @@ function updateExplosions() {
   });
 }
 
-// ── Update UI ──────────────────────────────────────────────────
 function updateUI() {
   const p1 = players[0], p2 = players[1];
   document.getElementById('score1').textContent = p1.score;
@@ -411,8 +260,7 @@ function updateUI() {
     document.getElementById('lives2').textContent = p2.lives;
   }
   document.getElementById('level').textContent = level;
-  const currentHS = gameMode === 1 ? hs1p : hs2p;
-  document.getElementById('highScoreDisplay').textContent = currentHS;
+  document.getElementById('highScoreDisplay').textContent = gameMode === 1 ? hs1p : hs2p;
 }
 
 function checkAndSaveHighScore() {
@@ -423,17 +271,15 @@ function checkAndSaveHighScore() {
   updateUI();
 }
 
-// ── Game Over Screen ──────────────────────────────────────────
-const gameOverScreen  = document.getElementById('gameOverScreen');
-const gameOverTitle   = document.getElementById('gameOverTitle');
-const gameOverText    = document.getElementById('gameOverText');
-const goScoresDiv     = document.getElementById('goScores');
+const gameOverScreen = document.getElementById('gameOverScreen');
+const gameOverTitle  = document.getElementById('gameOverTitle');
+const gameOverText   = document.getElementById('gameOverText');
+const goScoresDiv    = document.getElementById('goScores');
 
 document.getElementById('playAgainBtn').addEventListener('click', () => {
   gameOverScreen.style.display = 'none';
   resetGame();
 });
-
 document.getElementById('homeBtn').addEventListener('click', () => {
   gameOverScreen.style.display = 'none';
   document.getElementById('gameContainer').style.display = 'none';
@@ -447,63 +293,42 @@ function showGameOver(title, sub) {
   checkAndSaveHighScore();
   gameOverTitle.textContent = title;
   gameOverText.textContent  = sub;
-
   const p1 = players[0], p2 = players[1];
   const currentHS = gameMode === 1 ? hs1p : hs2p;
-
   if (gameMode === 1) {
     goScoresDiv.innerHTML = `
-      <div class="go-score-block">
-        <div class="go-score-label">SCORE</div>
-        <div class="go-score-val">${p1.score}</div>
-      </div>
-      <div class="go-score-block">
-        <div class="go-score-label">BEST</div>
-        <div class="go-score-val">${currentHS}</div>
-      </div>`;
+      <div class="go-score-block"><div class="go-score-label" style="color:#0f0">SCORE</div><div class="go-score-val" style="color:#0f0">${p1.score}</div></div>
+      <div class="go-score-block"><div class="go-score-label" style="color:#0f0">HIGH SCORE</div><div class="go-score-val" style="color:#0f0">${currentHS}</div></div>`;
   } else {
     goScoresDiv.innerHTML = `
-      <div class="go-score-block">
-        <div class="go-score-label" style="color:#0f0">P1 SCORE</div>
-        <div class="go-score-val" style="color:#0f0">${p1.score}</div>
-      </div>
-      <div class="go-score-block">
-        <div class="go-score-label" style="color:#0ff">P2 SCORE</div>
-        <div class="go-score-val" style="color:#0ff">${p2.score}</div>
-      </div>
-      <div class="go-score-block">
-        <div class="go-score-label">2P BEST</div>
-        <div class="go-score-val">${currentHS}</div>
-      </div>`;
+      <div class="go-score-block"><div class="go-score-label" style="color:#0f0">P1 SCORE</div><div class="go-score-val" style="color:#0f0">${p1.score}</div></div>
+      <div class="go-score-block"><div class="go-score-label" style="color:#0ff">P2 SCORE</div><div class="go-score-val" style="color:#0ff">${p2.score}</div></div>
+      <div class="go-score-block"><div class="go-score-label" style="color:#0f0">2P BEST</div><div class="go-score-val" style="color:#0f0">${currentHS}</div></div>`;
   }
-
   gameOverScreen.style.display = 'flex';
 }
 
-// ── Update ────────────────────────────────────────────────────
 function update() {
   const p1 = players[0], p2 = players[1];
-
   if (p1.alive) {
-    if (keys['ArrowLeft']  && p1.x > 0)                    p1.x -= p1.speed;
-    if (keys['ArrowRight'] && p1.x + p1.w < canvas.width)  p1.x += p1.speed;
+    if (keys['ArrowLeft']  && p1.x > 0)                p1.x -= p1.speed;
+    if (keys['ArrowRight'] && p1.x+p1.w < canvas.width) p1.x += p1.speed;
     if (keys['Space']) tryShoot(p1, bullets);
   }
-
   if (gameMode === 2 && p2.alive) {
-    if (keys['KeyA'] && p2.x > 0)                    p2.x -= p2.speed;
-    if (keys['KeyD'] && p2.x + p2.w < canvas.width)  p2.x += p2.speed;
+    if (keys['KeyA'] && p2.x > 0)                p2.x -= p2.speed;
+    if (keys['KeyD'] && p2.x+p2.w < canvas.width) p2.x += p2.speed;
     if (keys['KeyW']) tryShoot(p2, bullets);
   }
 
-  bullets      = bullets.filter(b => { b.y -= b.speed; return b.y + b.h > 0; });
+  bullets      = bullets.filter(b => { b.y -= b.speed; return b.y+b.h > 0; });
   enemyBullets = enemyBullets.filter(b => { b.y += b.speed; return b.y < canvas.height; });
 
   let hitEdge = false;
   aliens.forEach(a => {
     if (!a.alive) return;
     a.x += alienDir * alienSpeed;
-    if (a.x + a.w >= canvas.width || a.x <= 0) hitEdge = true;
+    if (a.x+a.w >= canvas.width || a.x <= 0) hitEdge = true;
   });
   if (hitEdge) { alienDir *= -1; aliens.forEach(a => { a.y += alienDropY; }); }
 
@@ -514,7 +339,7 @@ function update() {
     const alive = aliens.filter(a => a.alive);
     if (alive.length) {
       const s = alive[Math.floor(Math.random() * alive.length)];
-      enemyBullets.push({ x: s.x + s.w/2 - 2, y: s.y + s.h, w: 4, h: 14, speed: 4 + level * 0.5, color: '#f33' });
+      enemyBullets.push({ x: s.x+s.w/2-2, y: s.y+s.h, w: 4, h: 14, speed: 4+level*0.5, color: '#f33' });
     }
   }
 
@@ -527,7 +352,7 @@ function update() {
         else p1.score += pts;
         b.y = -100;
         checkAndSaveHighScore();
-        spawnExplosion(a.x + a.w/2, a.y + a.h/2);
+        spawnExplosion(a.x+a.w/2, a.y+a.h/2);
       }
     });
   });
@@ -555,24 +380,17 @@ function update() {
 
   const p1Dead = !p1.alive || p1.lives <= 0;
   const p2Dead = gameMode === 1 || !p2.alive || p2.lives <= 0;
-
   if (p1Dead && p2Dead) {
-    gameRunning = false;
-    draw();
+    gameRunning = false; draw();
     showGameOver('GAME OVER', gameMode === 2 ? 'Both ships destroyed!' : 'Your ship was destroyed.');
     return;
   }
 
-  const anyAlienLanded = aliens.some(a => a.alive && a.y + a.h >= Math.min(
+  const anyAlienLanded = aliens.some(a => a.alive && a.y+a.h >= Math.min(
     p1.alive ? p1.y : 9999,
     gameMode === 2 && p2.alive ? p2.y : 9999
   ));
-  if (anyAlienLanded) {
-    gameRunning = false;
-    draw();
-    showGameOver('GAME OVER', 'They invaded!');
-    return;
-  }
+  if (anyAlienLanded) { gameRunning = false; draw(); showGameOver('GAME OVER', 'They invaded!'); return; }
 
   if (aliens.every(a => !a.alive)) {
     level++; alienSpeed += 0.3;
@@ -582,11 +400,9 @@ function update() {
   }
 }
 
-// ── Draw ──────────────────────────────────────────────────────
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawStars();
-  drawBarriers();
+  drawStars(); drawBarriers();
   drawPlayer(players[0]);
   if (gameMode === 2) drawPlayer(players[1]);
   aliens.forEach(drawAlien);
@@ -595,15 +411,12 @@ function draw() {
   updateExplosions();
 }
 
-// ── Loop ──────────────────────────────────────────────────────
 function loop() {
   if (!gameRunning) return;
-  update();
-  draw();
+  update(); draw();
   animId = requestAnimationFrame(loop);
 }
 
-// ── Reset / Start ─────────────────────────────────────────────
 function resetGame() {
   cancelAnimationFrame(animId);
   level = 1; alienSpeed = 0.5; alienDir = 1;
@@ -618,10 +431,9 @@ function resetGame() {
 
 function startGame(mode) {
   gameMode = mode;
-  document.getElementById('startScreen').style.display    = 'none';
-  document.getElementById('gameContainer').style.display  = 'flex';
-  document.getElementById('ui-row2').style.display        = mode === 2 ? 'flex' : 'none';
-  document.getElementById('highScoreUI').style.visibility = mode === 2 ? 'visible' : 'hidden';
+  document.getElementById('startScreen').style.display   = 'none';
+  document.getElementById('gameContainer').style.display = 'flex';
+  document.getElementById('ui-row2').style.display       = mode === 2 ? 'flex' : 'none';
 
   const scoreEl = document.getElementById('p1ScoreUI');
   const livesEl = document.getElementById('p1LivesUI');
@@ -637,10 +449,9 @@ function startGame(mode) {
     livesEl.style.color = '';
   }
 
-  const msg = mode === 1
+  document.getElementById('message').textContent = mode === 1
     ? 'ARROW KEYS TO MOVE  |  SPACE TO SHOOT'
     : 'P1: ← → SPACE  |  P2: A D W';
-  document.getElementById('message').textContent = msg;
 
   resetGame();
 }
